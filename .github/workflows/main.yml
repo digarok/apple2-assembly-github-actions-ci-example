@@ -1,0 +1,47 @@
+on: [push]
+
+jobs:
+  cicd_pipeline:
+    runs-on: ubuntu-latest
+    name: Run assembly and disk image CICD pipeline
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Merlin
+      uses: digarok/install-merlin32-action@v0.1.0
+
+    - name: Assemble Source 
+      run: merlin32 src/example.s
+
+    - name: Install Cadius
+      uses: digarok/install-cadius-action@v0.1.0
+
+    - name: Make Bootable ProDOS Image
+      if: startsWith(github.ref, 'refs/tags/v') 
+      run: |
+        cadius createvolume exampledsk.po exampledsk 140KB
+        cadius addfile exampledsk.po /exampledsk/ ./PRODOS.2.4.2/PRODOS
+        echo "example.system=Type(FF),AuxType(2000),VersionCreate(24),MinVersion(00),Access(21)" > ./src/_FileInformation.txt
+        cadius addfile exampledsk.po /exampledsk/ ./src/example.system
+        cadius catalog exampledsk.po
+        ls -al
+
+    - name: Create Release
+      id: create_release
+      if: startsWith(github.ref, 'refs/tags/v') 
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+
+    - name: Upload Release Asset
+      if: startsWith(github.ref, 'refs/tags/v') 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: ./exampledsk.po
+        asset_name: exampledsk.po
+        asset_content_type: application/octet-stream
