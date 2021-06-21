@@ -1,3 +1,5 @@
+[![.github/workflows/main.yml](https://github.com/digarok/apple2-assembly-github-actions-ci-example/actions/workflows/main.yml/badge.svg)](https://github.com/digarok/apple2-assembly-github-actions-ci-example/actions/workflows/main.yml)
+
 # apple2-assembly-github-actions-ci-example
 Example project to show CI with Github Actions to assemble 65xx source
 
