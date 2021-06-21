@@ -4,7 +4,7 @@ Example project to show CI with Github Actions to assemble 65xx source
 # Explanation
 See the projects `.github/workflows/main.yml` file to understand how it is automatically built using a Github action.
 
-Uses: digarok/merlin32-action@master
+
 # apple2-assembly-github-actions-ci-example
 Example project showing how to achieve Continuous Integration with Github Actions to assemble 65xx source, package it in a ProDOS disk image, and release it on Github.
 
@@ -29,5 +29,5 @@ The main project workflow file above has the following logic:
     - Upload the new disk image to our Github Release page for anyone to download and use immediately!
 
 Uses:
-- [`digarok/install-merlin32-action@v0.1.0`](https://github.com/marketplace/actions/install-merlin32-action)
-- [`digarok/install-cadius-action@v0.1.0`](https://github.com/marketplace/actions/install-cadius-action)
+- [`digarok/install-merlin32-action@v0.1.2`](https://github.com/marketplace/actions/install-merlin32-action)
+- [`digarok/install-cadius-action@v0.1.2`](https://github.com/marketplace/actions/install-cadius-action)
