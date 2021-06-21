@@ -1,13 +1,6 @@
 [![.github/workflows/main.yml](https://github.com/digarok/apple2-assembly-github-actions-ci-example/actions/workflows/main.yml/badge.svg)](https://github.com/digarok/apple2-assembly-github-actions-ci-example/actions/workflows/main.yml)
 
 # apple2-assembly-github-actions-ci-example
-Example project to show CI with Github Actions to assemble 65xx source
-
-# Explanation
-See the projects `.github/workflows/main.yml` file to understand how it is automatically built using a Github action.
-
-
-# apple2-assembly-github-actions-ci-example
 Example project showing how to achieve Continuous Integration with Github Actions to assemble 65xx source, package it in a ProDOS disk image, and release it on Github.
 
 # Explanation
